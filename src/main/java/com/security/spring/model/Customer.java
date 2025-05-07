@@ -1,4 +1,4 @@
-package com.security.springsecsection1.model;
+package com.security.spring.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

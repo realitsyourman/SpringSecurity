@@ -1,7 +1,7 @@
-package com.security.springsecsection1.config;
+package com.security.spring.config;
 
-import com.security.springsecsection1.model.Customer;
-import com.security.springsecsection1.repository.CustomerRepository;
+import com.security.spring.model.Customer;
+import com.security.spring.repository.CustomerRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

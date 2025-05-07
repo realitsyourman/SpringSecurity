@@ -1,6 +1,6 @@
-package com.security.springsecsection1.repository;
+package com.security.spring.repository;
 
-import com.security.springsecsection1.model.Customer;
+import com.security.spring.model.Customer;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

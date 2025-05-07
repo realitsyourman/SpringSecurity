@@ -1,4 +1,4 @@
-package com.security.springsecsection1.config;
+package com.security.spring.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
