@@ -2,6 +2,8 @@ package com.security.spring.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import com.security.spring.exceptionhandling.CustomeAccessDeniedHandler;
+import com.security.spring.exceptionhandling.CustomeBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -26,7 +28,8 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "myCards").authenticated()
                 .requestMatchers("/notices", "/contact", "/error", "/register").permitAll())
         .formLogin(withDefaults())
-        .httpBasic(withDefaults())
+        .httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint()))
+        .exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomeAccessDeniedHandler()))
         .build();
   }
 
