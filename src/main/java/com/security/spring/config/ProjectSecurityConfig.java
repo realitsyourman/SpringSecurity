@@ -23,10 +23,11 @@ public class ProjectSecurityConfig {
     return http
         .requiresChannel(rcc -> rcc.anyRequest().requiresInsecure())
         .csrf(csrf -> csrf.disable())
+        .sessionManagement(smc -> smc.invalidSessionUrl("/invalidSession").maximumSessions(3).maxSessionsPreventsLogin(true))
         .authorizeHttpRequests(
             request -> request
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "myCards").authenticated()
-                .requestMatchers("/notices", "/contact", "/error", "/register").permitAll())
+                .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession").permitAll())
         .formLogin(withDefaults())
         .httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint()))
         .exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomeAccessDeniedHandler()))
