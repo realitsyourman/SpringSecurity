@@ -4,7 +4,6 @@ import com.security.spring.model.Customer;
 import com.security.spring.repository.CustomerRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +22,9 @@ public class EazyBankUserDetailsService implements UserDetailsService {
     Customer customer = customerRepository.findByEmail(username)
         .orElseThrow(() -> new UsernameNotFoundException("User details not found:" + username));
 
-    List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(customer.getRole()));
+    List<SimpleGrantedAuthority> authorities = customer.getAuthorities().stream()
+        .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+        .toList();
 
     return new User(customer.getEmail(), customer.getPwd(), authorities);
   }
